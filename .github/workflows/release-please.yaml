@@ -1,0 +1,41 @@
+# Copyright 2025 Dimitri Koshkin. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+name: release-please
+
+on:
+  push:
+    branches:
+      - main
+      - release/v*
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  release-please:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release-please
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
+          target-branch: ${{ github.ref_name }}
+
+      - name: Check out code
+        if: ${{ steps.release-please.outputs.release_created }}
+        uses: actions/checkout@v6
+
+      - name: Run release workflow
+        if: ${{ steps.release-please.outputs.release_created }}
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: release.yaml
+          ref: ${{ steps.release-please.outputs.tag_name }}
