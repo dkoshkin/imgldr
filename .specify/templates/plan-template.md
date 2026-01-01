@@ -31,7 +31,10 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- Code quality: lint/format plan, error-handling approach, and API docs noted
+- Testing: unit/integration coverage planned; regression tests for fixes included
+- UX consistency: CLI flags, output formats, and docs consistency validated
+- Performance: budgets defined; benchmarks/profiling plan documented
 
 ## Project Structure
 
