@@ -1,3 +1,8 @@
+<!--
+ Copyright 2025 Dimitri Koshkin. All rights reserved.
+ SPDX-License-Identifier: Apache-2.0
+ -->
+
 ---
 description: Convert existing tasks into actionable, dependency-ordered GitHub issues for the feature based on available design artifacts.
 tools: ['github/github-mcp-server/issue_write']

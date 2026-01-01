@@ -1,6 +1,11 @@
+<!--
+ Copyright 2025 Dimitri Koshkin. All rights reserved.
+ SPDX-License-Identifier: Apache-2.0
+ -->
+
 ---
 description: Execute the implementation planning workflow using the plan template to generate design artifacts.
-handoffs: 
+handoffs:
   - label: Create Tasks
     agent: speckit.tasks
     prompt: Break the plan into tasks

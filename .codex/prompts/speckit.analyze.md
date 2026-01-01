@@ -1,3 +1,8 @@
+<!--
+ Copyright 2025 Dimitri Koshkin. All rights reserved.
+ SPDX-License-Identifier: Apache-2.0
+ -->
+
 ---
 description: Perform a non-destructive cross-artifact consistency and quality analysis across spec.md, plan.md, and tasks.md after task generation.
 ---

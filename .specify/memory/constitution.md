@@ -1,4 +1,9 @@
 <!--
+ Copyright 2025 Dimitri Koshkin. All rights reserved.
+ SPDX-License-Identifier: Apache-2.0
+ -->
+
+<!--
 Sync Impact Report
 - Version change: unversioned (template) → 1.0.0
 - Modified principles: PRINCIPLE_1_NAME → I. Code Quality Is Non-Negotiable; PRINCIPLE_2_NAME → II. Tests Prove Behavior; PRINCIPLE_3_NAME → III. Consistent User Experience; PRINCIPLE_4_NAME → IV. Performance Budgets Are Part of Design
