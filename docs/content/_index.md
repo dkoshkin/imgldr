@@ -1,5 +1,5 @@
 +++
-title = "Golang Repository Template"
+title = "Image Loader"
 
 # [[cascade]]
 # type = "blog"
@@ -15,4 +15,4 @@ type = "docs"
   path = "/**"
 +++
 
-Golang Repository Template.
+Image Loader.

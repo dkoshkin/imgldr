@@ -22,5 +22,5 @@ schema-chart: ## Updates helm values JSON schema
 schema-chart:
 	helm schema \
 	  --use-helm-docs \
-	  --values charts/golang-repository-template/values.yaml \
-	  --output charts/golang-repository-template/values.schema.json
+	  --values charts/imgldr/values.yaml \
+	  --output charts/imgldr/values.schema.json

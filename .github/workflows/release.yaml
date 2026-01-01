@@ -59,11 +59,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          devbox run -- helm package ./charts/golang-repository-template \
+          devbox run -- helm package ./charts/imgldr \
                           --destination . \
                           --version ${{ github.ref_name }} \
                           --app-version ${{ github.ref_name }}
-          devbox run -- gh release upload ${{ github.ref_name }} golang-repository-template-*.tgz
+          devbox run -- gh release upload ${{ github.ref_name }} imgldr-*.tgz
 
       - name: Build GitHub pages
         uses: benc-uk/workflow-dispatch@v1

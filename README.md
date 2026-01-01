@@ -5,8 +5,8 @@
 
 # Project Template
 
-[![build](https://github.com/dkoshkin/golang-repository-template/actions/workflows/build.yaml/badge.svg)](https://github.com/dkoshkin/golang-repository-template/actions/workflows/build.yaml)
-[![codecov](https://codecov.io/github/dkoshkin/golang-repository-template/graph/badge.svg?token=RUEME4RFZK)](https://codecov.io/github/dkoshkin/golang-repository-template)
+[![build](https://github.com/dkoshkin/imgldr/actions/workflows/build.yaml/badge.svg)](https://github.com/dkoshkin/imgldr/actions/workflows/build.yaml)
+[![codecov](https://codecov.io/github/dkoshkin/imgldr/graph/badge.svg?token=RUEME4RFZK)](https://codecov.io/github/dkoshkin/imgldr)
 
 This repository serves as a starting point for new Golang projects.
 It includes a Makefile with common development targets with `make`,
@@ -23,7 +23,7 @@ Use this repo as the template for a new repository.
 
 In the new repository:
 
-1. Search and replacing all instances of `golang-repository-template` and `Golang Repository Template`
+1. Search and replacing all instances of `imgldr` and `Image Loader`
    with your project’s name.
 2. Update the files in `hack/license` with your details.
 
@@ -86,7 +86,7 @@ make build-snapshot
 ```
 
 The binary for your OS will be placed in `./dist`,
-e.g. `./dist/golang-repository-template_darwin_arm64_v8.0/golang-repository-template`:
+e.g. `./dist/imgldr_darwin_arm64_v8.0/imgldr`:
 
 ### Lint
 
@@ -122,5 +122,5 @@ The repository is configured with automation to periodically update dependencies
 [Codecov]: https://about.codecov.io/
 [pre-commit-hooks]: https://pre-commit.com/#3-install-the-git-hook-scripts
 [Dependabot]: https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide
-[dependabot-action]: https://github.com/dkoshkin/golang-repository-template/actions/workflows/dependabot/dependabot-updates
-[devbox-action]: https://github.com/dkoshkin/golang-repository-template/actions/workflows/devbox-dependencies-update.yaml
+[dependabot-action]: https://github.com/dkoshkin/imgldr/actions/workflows/dependabot/dependabot-updates
+[devbox-action]: https://github.com/dkoshkin/imgldr/actions/workflows/devbox-dependencies-update.yaml
