@@ -4,7 +4,7 @@
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json
 version: 2
 
-project_name: golang-repository-template
+project_name: imgldr
 
 changelog:
   use: github
@@ -28,8 +28,8 @@ release:
   extra_files: []
 
 builds:
-  - id: golang-repository-template
-    dir: ./cmd/golang-repository-template
+  - id: imgldr
+    dir: ./cmd/imgldr
     env:
       - CGO_ENABLED=0
     flags:
@@ -60,17 +60,17 @@ builds:
                   --bare \
                   --platform linux/{{ .Arch }} \
                   -t v{{ trimprefix .Version "v" }}-{{ .Arch }} \
-                  ./cmd/golang-repository-template
+                  ./cmd/imgldr
           fi'
 
 archives:
   - name_template: '{{ .ProjectName }}_v{{ trimprefix .Version "v" }}_{{ .Os }}_{{ .Arch }}'
     ids:
-      - golang-repository-template
+      - imgldr
 
 kos:
-  - id: golang-repository-template
-    build: golang-repository-template
+  - id: imgldr
+    build: imgldr
     labels:
       org.opencontainers.image.created: "{{ .CommitDate }}"
       org.opencontainers.image.title: "{{ .ProjectName }}"
@@ -81,7 +81,7 @@ kos:
       - linux/amd64
       - linux/arm64
     repositories:
-      - ghcr.io/dkoshkin/golang-repository-template
+      - ghcr.io/dkoshkin/imgldr
     bare: true
     creation_time: "{{.CommitTimestamp}}"
     ko_data_creation_time: "{{.CommitTimestamp}}"

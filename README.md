@@ -3,15 +3,20 @@
  SPDX-License-Identifier: Apache-2.0
  -->
 
-# Project Template
+# Imgldr
 
-[![build](https://github.com/dkoshkin/golang-repository-template/actions/workflows/build.yaml/badge.svg)](https://github.com/dkoshkin/golang-repository-template/actions/workflows/build.yaml)
-[![codecov](https://codecov.io/github/dkoshkin/golang-repository-template/graph/badge.svg?token=RUEME4RFZK)](https://codecov.io/github/dkoshkin/golang-repository-template)
+[![build](https://github.com/dkoshkin/imgldr/actions/workflows/build.yaml/badge.svg)](https://github.com/dkoshkin/imgldr/actions/workflows/build.yaml)
+[![codecov](https://codecov.io/github/dkoshkin/imgldr/graph/badge.svg?token=RUEME4RFZK)](https://codecov.io/github/dkoshkin/imgldr)
 
-This repository serves as a starting point for new Golang projects.
-It includes a Makefile with common development targets with `make`,
-a pre-configured development environment using [Devbox][Devbox],
-GitHub Actions workflows, and [release-please-action][release-please-action] for release automation.
+This project is a Kubernetes operator designed for development and testing workflows
+where pushing images may not be practical, similar to `kind load docker-image`, but for remote clusters.
+
+Instead of requiring images to be tagged, pushed, and pulled,
+`imgldr` watches for Pods with `ImagePullBackOff` and `ErrImagePull` conditions in a target cluster.
+For eligible images, it streams the image from a local Docker daemon
+and imports it directly into the container runtime on the node where the Pod is scheduled.
+
+This is not intended for production use!
 
 ## Prerequisites
 
@@ -19,47 +24,7 @@ GitHub Actions workflows, and [release-please-action][release-please-action] for
 
 ## Usage Instructions
 
-Use this repo as the template for a new repository.
-
-In the new repository:
-
-1. Search and replacing all instances of `golang-repository-template` and `Golang Repository Template`
-   with your project’s name.
-2. Update the files in `hack/license` with your details.
-
-In Github:
-
-1. Create two [Github PATs][Github-PAT] to use in Github automation.
-   - One to use with [release-please-action][release-please-action], adding the following permissions:
-     - Contents: read and write
-     - Pull Requests: read and write
-     - Actions: read and write
-     - Issues: read and write
-
-     Go to `Settings` > `Secrets and variables` > `Actions` and add is as `RELEASE_PLEASE_TOKEN`.
-
-   - Another to use with [Devbox][Devbox] update automation, adding the following permissions:
-     - Contents: read and write
-     - Pull Requests: read and write
-     - Issues: read and write
-
-     Go to `Settings` > `Secrets and variables` > `Actions` and add is as `DEPENDENCY_AUTOMATION_TOKEN`.
-
-     Go to `Settings` > `Secrets and variables` > `Actions` and add these Secrets
-     `GIT_SSH_SIGNING_PRIVATE_KEY`, `GIT_USER_NAME` and `GIT_USER_EMAIL`.
-2. Go to `Settings` > `Pages` and set the source to `gh-pages` branch and `/ (root)` folder.
-3. Go to `Settings` > `Branches` > `Add branch ruleset` and configure it for the "default" and `release/**/*` branches.
-   Enable "Require signed commits" and "Require a pull request before merging".
-   Enable "Require status checks to pass" with the following checks:
-   - build / build
-   - lint / gha
-   - lint / go (.)
-   - lint / helm
-   - pre-commit / pre-commit
-   - unit-tests / unit-tests
-   - govulncheck / govulncheck (.)
-   - codeql / analyze (go)
-   - e2e-tests / e2e-tests
+...
 
 ## Setup your Dev Environment
 
@@ -86,7 +51,7 @@ make build-snapshot
 ```
 
 The binary for your OS will be placed in `./dist`,
-e.g. `./dist/golang-repository-template_darwin_arm64_v8.0/golang-repository-template`:
+e.g. `./dist/imgldr_darwin_arm64_v8.0/imgldr`:
 
 ### Lint
 
@@ -116,11 +81,9 @@ The repository is configured with automation to periodically update dependencies
 - [devbox action][devbox-action] to update [Devbox][Devbox] packages.
 
 [Devbox]: https://www.jetify.com/docs/devbox/installing-devbox
-[release-please-action]: https://github.com/googleapis/release-please-action
-[Github-PAT]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
 [direnv]: https://direnv.net/
 [Codecov]: https://about.codecov.io/
 [pre-commit-hooks]: https://pre-commit.com/#3-install-the-git-hook-scripts
 [Dependabot]: https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide
-[dependabot-action]: https://github.com/dkoshkin/golang-repository-template/actions/workflows/dependabot/dependabot-updates
-[devbox-action]: https://github.com/dkoshkin/golang-repository-template/actions/workflows/devbox-dependencies-update.yaml
+[dependabot-action]: https://github.com/dkoshkin/imgldr/actions/workflows/dependabot/dependabot-updates
+[devbox-action]: https://github.com/dkoshkin/imgldr/actions/workflows/devbox-dependencies-update.yaml

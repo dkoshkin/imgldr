@@ -6,5 +6,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("golang-repository-template is alive")
+	fmt.Println("imgldr is alive")
 }
