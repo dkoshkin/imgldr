@@ -12,11 +12,11 @@ dev.run-on-kind:
 	kind load docker-image --name $(KIND_CLUSTER_NAME) \
 		ko.local/imgldr:$(SNAPSHOT_VERSION)
 	helm upgrade --install imgldr ./charts/imgldr \
-		--set-string image.repository=ko.local/imgldr \
-		--set-string image.tag=$(SNAPSHOT_VERSION) \
+		--set-string manager.image.repository=ko.local/imgldr \
+		--set-string manager.image.tag=$(SNAPSHOT_VERSION) \
 		--wait --wait-for-jobs
-	kubectl rollout restart deployment imgldr
-	kubectl rollout status deployment imgldr
+	kubectl rollout restart deployment imgldr-controller-manager
+	kubectl rollout status deployment imgldr-controller-manager
 
 .PHONY: dev.image-on-kind
 dev.image-on-kind: export KUBECONFIG := $(KIND_KUBECONFIG)
@@ -29,8 +29,8 @@ dev.image-on-kind:
 	  ko.local/imgldr:$(SNAPSHOT_VERSION)
 	kubectl set image deployment \
 	  imgldr manager=ko.local/imgldr:$(SNAPSHOT_VERSION)
-	kubectl rollout restart deployment imgldr
-	kubectl rollout status deployment imgldr
+	kubectl rollout restart deployment imgldr-controller-manager
+	kubectl rollout status deployment imgldr-controller-manager
 
 .PHONY: release-please
 release-please:
