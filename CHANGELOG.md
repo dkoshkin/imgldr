@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.0.1 (2026-01-02)
+
+<!-- Release notes generated using configuration in .github/release.yaml at main -->
+
+## What's Changed
+### Exciting New Features 🎉
+* refactor: Initialize project by @dkoshkin in https://github.com/dkoshkin/imgldr/pull/1
+### Other Changes
+* ai: Initialize spec-kit and add constitution by @dkoshkin in https://github.com/dkoshkin/imgldr/pull/2
+* build: fix version in .release-please-manifest.json by @dkoshkin in https://github.com/dkoshkin/imgldr/pull/3
+
+## New Contributors
+* @dkoshkin made their first contribution in https://github.com/dkoshkin/imgldr/pull/1
+
+**Full Changelog**: https://github.com/dkoshkin/imgldr/commits/v0.0.1
+
 ## 0.1.1 (2025-08-14)
 
 <!-- Release notes generated using configuration in .github/release.yaml at main -->
