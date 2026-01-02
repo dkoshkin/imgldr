@@ -1,3 +1,6 @@
+// Copyright 2025 Dimitri Koshkin. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
+
 //go:build e2e
 // +build e2e
 
@@ -33,16 +36,16 @@ import (
 	"github.com/dkoshkin/imgldr/test/utils"
 )
 
-// namespace where the project is deployed in
+// namespace where the project is deployed in.
 const namespace = "imgldr-system"
 
-// serviceAccountName created for the project
+// serviceAccountName created for the project.
 const serviceAccountName = "imgldr-controller-manager"
 
-// metricsServiceName is the name of the metrics service of the project
+// metricsServiceName is the name of the metrics service of the project.
 const metricsServiceName = "imgldr-controller-manager-metrics-service"
 
-// metricsRoleBindingName is the name of the RBAC that will be created to allow get the metrics data
+// metricsRoleBindingName is the name of the RBAC that will be created to allow get the metrics data.
 const metricsRoleBindingName = "imgldr-metrics-binding"
 
 var _ = Describe("Manager", Ordered, func() {
