@@ -37,7 +37,6 @@ kubebuilder-sync-chart: ; $(info $(M) syncing kubebuilder helm chart)
 	kubebuilder edit --plugins=helm/v2-alpha
 	# This workflow is added by the plugin, just remove it.
 	rm -rf .github/workflows/test-chart.yml
-	sed -i.bak -e '/^[[:space:]]*command:/d' -e '/^[[:space:]]*-[[:space:]]*\/manager/d' dist/chart/templates/manager/manager.yaml
 	rm -f dist/chart/templates/manager/manager.yaml.bak
 	for file in $$(find dist/chart/templates -type f \( -name '*.yaml' -o -name '*.yml' \)); do \
 	  { cat hack/license/yaml.txt; echo; cat "$$file"; } > "$$file.tmp"; \
