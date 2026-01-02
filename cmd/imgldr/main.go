@@ -27,13 +27,13 @@ var (
 	setupLog = ctrl.Log.WithName("setup")
 )
 
+//nolint:gochecknoinits // Upstream standard.
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
 	// +kubebuilder:scaffold:scheme
 }
 
-// nolint:gocyclo
 func main() {
 	var metricsAddr string
 	var metricsCertPath, metricsCertName, metricsCertKey string
@@ -89,7 +89,7 @@ func main() {
 		TLSOpts: webhookTLSOpts,
 	}
 
-	if len(webhookCertPath) > 0 {
+	if webhookCertPath != "" {
 		setupLog.Info(
 			"Initializing webhook certificate watcher using provided certificates",
 			"webhook-cert-path",
@@ -133,7 +133,7 @@ func main() {
 	// - [METRICS-WITH-CERTS] at config/default/kustomization.yaml to generate and use certificates
 	// managed by cert-manager for the metrics server.
 	// - [PROMETHEUS-WITH-CERTS] at config/prometheus/kustomization.yaml for TLS certification.
-	if len(metricsCertPath) > 0 {
+	if metricsCertPath != "" {
 		setupLog.Info(
 			"Initializing metrics certificate watcher using provided certificates",
 			"metrics-cert-path",

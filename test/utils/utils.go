@@ -17,6 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+//nolint:gosec // Allow running exec with trusted variables.
 package utils
 
 import (
@@ -27,7 +28,7 @@ import (
 	"os/exec"
 	"strings"
 
-	. "github.com/onsi/ginkgo/v2" //nolint:revive,staticcheck
+	. "github.com/onsi/ginkgo/v2" //nolint:revive // Upstream standard.
 )
 
 const (
@@ -179,8 +180,7 @@ func GetProjectDir() (string, error) {
 // UncommentCode searches for target in the file and remove the comment prefix
 // of the target content. The target content may span multiple lines.
 func UncommentCode(filename, target, prefix string) error {
-	// false positive
-	//nolint:gosec
+	//nolint:gosec // False positive.
 	content, err := os.ReadFile(filename)
 	if err != nil {
 		return fmt.Errorf("failed to read file %q: %w", filename, err)
@@ -219,8 +219,7 @@ func UncommentCode(filename, target, prefix string) error {
 		return fmt.Errorf("failed to write to output: %w", err)
 	}
 
-	// false positive
-	//nolint:gosec
+	//nolint:gosec // False positive.
 	if err = os.WriteFile(filename, out.Bytes(), 0o644); err != nil {
 		return fmt.Errorf("failed to write file %q: %w", filename, err)
 	}

@@ -20,6 +20,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+//nolint:gosec // Allow running exec with trusted variables.
 package e2e
 
 import (
@@ -294,7 +295,7 @@ func serviceAccountToken() (string, error) {
 
 	// Temporary file to store the token request
 	secretName := fmt.Sprintf("%s-token-request", serviceAccountName)
-	tokenRequestFile := filepath.Join("/tmp", secretName)
+	tokenRequestFile := filepath.Join(os.TempDir(), secretName)
 	err := os.WriteFile(tokenRequestFile, []byte(tokenRequestRawString), os.FileMode(0o644))
 	if err != nil {
 		return "", err
