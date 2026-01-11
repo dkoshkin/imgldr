@@ -3,11 +3,11 @@
 
 apiVersion: v2
 
-name: golang-repository-template
+name: imgldr
 type: application
-description: A Helm chart for Golang Repository Template
+description: A Helm chart for Imgldr
 
-home: https://github.com/dkoshkin/golang-repository-template
+home: https://github.com/dkoshkin/imgldr
 maintainers:
 - name: dkoshkin
   email: dimitri.koshkin@gmail.com

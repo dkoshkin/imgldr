@@ -35,7 +35,7 @@ build-installer: ; $(info $(M) building installer manifest)
 	kustomize build config/default > dist/install.yaml
 
 .PHONY: kubebuilder.sync-chart
-kubebuilder.sync-chart: ## Regenerate kubebuilder helm chart and sync to charts/golang-repository-template
+kubebuilder.sync-chart: ## Regenerate kubebuilder helm chart and sync to charts/imgldr
 kubebuilder.sync-chart: ; $(info $(M) syncing kubebuilder helm chart)
 	rm -rf dist/chart/templates
 	kubebuilder edit --plugins=helm/v2-alpha
@@ -49,8 +49,8 @@ kubebuilder.sync-chart: ; $(info $(M) syncing kubebuilder helm chart)
 	  } > "$$file.tmp"; \
 	  mv "$$file.tmp" "$$file"; \
 	done
-	rm -rf charts/golang-repository-template/templates
-	cp -R dist/chart/templates charts/golang-repository-template/templates
+	rm -rf charts/imgldr/templates
+	cp -R dist/chart/templates charts/imgldr/templates
 	# Format the values.yaml file.
 	cp dist/chart/values.yaml dist/chart/values.yaml.formatted
 	yamlfmt dist/chart/values.yaml.formatted
@@ -60,6 +60,6 @@ kubebuilder.sync-chart: ; $(info $(M) syncing kubebuilder helm chart)
 	  cat hack/license/yaml.txt; \
 	  echo; \
 	  cat dist/chart/values.yaml.formatted; \
-	} > charts/golang-repository-template/values.yaml
+	} > charts/imgldr/values.yaml
 	rm -f dist/chart/values.yaml.formatted
 	$(MAKE) chart-docs schema-chart

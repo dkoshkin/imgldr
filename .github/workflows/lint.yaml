@@ -109,7 +109,7 @@ jobs:
           devbox run -- \
             kind load docker-image \
               --name "${KIND_CLUSTER_NAME}" \
-              "ko.local/golang-repository-template:${{ steps.export-image-tag.outputs.test-image-tag }}"
+              "ko.local/imgldr:${{ steps.export-image-tag.outputs.test-image-tag }}"
 
       - if: steps.list-changed.outputs.changed == 'true'
         name: Run chart-testing (install)
@@ -117,7 +117,7 @@ jobs:
           devbox run -- \
             ct install \
               --config charts/ct-config.yaml \
-              --helm-extra-set-args "--set-string manager.image.repository=ko.local/golang-repository-template --set-string manager.image.tag=${{ steps.export-image-tag.outputs.test-image-tag }}"
+              --helm-extra-set-args "--set-string manager.image.repository=ko.local/imgldr --set-string manager.image.tag=${{ steps.export-image-tag.outputs.test-image-tag }}"
         env:
           KUBECONFIG: ${{ env.KIND_KUBECONFIG }}
 

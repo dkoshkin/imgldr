@@ -3,13 +3,13 @@
 # and allow the plugins properly work.
 # More info: https://book.kubebuilder.io/reference/project-config.html
 cliVersion: v4.10.1
-domain: com.dimitrikoshkin.golang-repository-template
+domain: com.dimitrikoshkin.imgldr
 layout:
 - go.kubebuilder.io/v4
 plugins:
   helm.kubebuilder.io/v2-alpha:
     manifests: dist/install.yaml
     output: dist
-projectName: golang-repository-template
-repo: github.com/dkoshkin/golang-repository-template
+projectName: imgldr
+repo: github.com/dkoshkin/imgldr
 version: "3"

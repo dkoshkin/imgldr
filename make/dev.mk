@@ -10,13 +10,13 @@ endif
 dev.run-on-kind: SNAPSHOT_VERSION = $(shell gojq -r '.version+"-"+.runtime.goarch' dist/metadata.json)
 dev.run-on-kind:
 	kind load docker-image --name $(KIND_CLUSTER_NAME) \
-		ko.local/golang-repository-template:$(SNAPSHOT_VERSION)
-	helm upgrade --install golang-repository-template ./charts/golang-repository-template \
-		--set-string manager.image.repository=ko.local/golang-repository-template \
+		ko.local/imgldr:$(SNAPSHOT_VERSION)
+	helm upgrade --install imgldr ./charts/imgldr \
+		--set-string manager.image.repository=ko.local/imgldr \
 		--set-string manager.image.tag=$(SNAPSHOT_VERSION) \
 		--wait --wait-for-jobs
-	kubectl rollout restart deployment golang-repository-template-controller-manager
-	kubectl rollout status deployment golang-repository-template-controller-manager
+	kubectl rollout restart deployment imgldr-controller-manager
+	kubectl rollout status deployment imgldr-controller-manager
 
 .PHONY: dev.image-on-kind
 dev.image-on-kind: export KUBECONFIG := $(KIND_KUBECONFIG)
@@ -26,11 +26,11 @@ endif
 dev.image-on-kind: SNAPSHOT_VERSION = $(shell gojq -r '.version+"-"+.runtime.goarch' dist/metadata.json)
 dev.image-on-kind:
 	kind load docker-image --name $(KIND_CLUSTER_NAME) \
-	  ko.local/golang-repository-template:$(SNAPSHOT_VERSION)
+	  ko.local/imgldr:$(SNAPSHOT_VERSION)
 	kubectl set image deployment \
-	  golang-repository-template manager=ko.local/golang-repository-template:$(SNAPSHOT_VERSION)
-	kubectl rollout restart deployment golang-repository-template-controller-manager
-	kubectl rollout status deployment golang-repository-template-controller-manager
+	  imgldr manager=ko.local/imgldr:$(SNAPSHOT_VERSION)
+	kubectl rollout restart deployment imgldr-controller-manager
+	kubectl rollout status deployment imgldr-controller-manager
 
 .PHONY: release-please
 release-please:

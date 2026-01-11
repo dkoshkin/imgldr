@@ -7,9 +7,9 @@ kind: Service
 metadata:
     labels:
         app.kubernetes.io/managed-by: {{ .Release.Service }}
-        app.kubernetes.io/name: golang-repository-template
+        app.kubernetes.io/name: imgldr
         control-plane: controller-manager
-    name: golang-repository-template-controller-manager-metrics-service
+    name: imgldr-controller-manager-metrics-service
     namespace: {{ .Release.Namespace }}
 spec:
     ports:
@@ -18,6 +18,6 @@ spec:
           protocol: TCP
           targetPort: {{ .Values.metrics.port }}
     selector:
-        app.kubernetes.io/name: golang-repository-template
+        app.kubernetes.io/name: imgldr
         control-plane: controller-manager
 {{- end }}

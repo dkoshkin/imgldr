@@ -20,6 +20,6 @@ import (
 // to a cluster with cert-manager installed and the project deployed.
 func TestE2E(t *testing.T) {
 	RegisterFailHandler(Fail)
-	_, _ = fmt.Fprintf(GinkgoWriter, "Starting golang-repository-template integration test suite\n")
+	_, _ = fmt.Fprintf(GinkgoWriter, "Starting imgldr integration test suite\n")
 	RunSpecs(t, "e2e suite")
 }

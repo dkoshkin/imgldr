@@ -7,10 +7,10 @@ Truncated to 63 characters for Kubernetes compatibility.
   {{- if .Chart.Name }}
     {{- .Chart.Name | trunc 63 | trimSuffix "-" }}
   {{- else }}
-    golang-repository-template
+    imgldr
   {{- end }}
 {{- else }}
-  golang-repository-template
+  imgldr
 {{- end }}
 {{- end }}
 

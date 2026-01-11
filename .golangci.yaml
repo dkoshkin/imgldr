@@ -71,7 +71,7 @@ formatters:
         - Standard
         - Default
         - Prefix(github.com/dkoshkin)
-        - Prefix(github.com/dkoshkin/golang-repository-template)
+        - Prefix(github.com/dkoshkin/imgldr)
     gofumpt:
       extra-rules: true
     golines:
