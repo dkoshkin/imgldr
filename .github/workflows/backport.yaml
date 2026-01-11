@@ -1,0 +1,35 @@
+# Copyright 2025 Dimitri Koshkin. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+name: backport
+
+on:
+  pull_request:
+    types:
+      - labeled
+      - closed
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  backport:
+    runs-on: ubuntu-24.04
+    if: |
+      github.event.pull_request.merged == true
+      && contains(github.event.pull_request.labels.*.name, 'auto-backport')
+      && (
+        (github.event.action == 'labeled' && github.event.label.name == 'auto-backport')
+        || (github.event.action == 'closed')
+      )
+    steps:
+      - name: Backport
+        uses: sorenlouv/backport-github-action@v10.2.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          auto_backport_label_prefix: backport-to-
+
+      - name: Print log
+        if: always()
+        run: cat /home/runner/.backport/backport.log

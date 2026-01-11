@@ -1,0 +1,85 @@
+# Copyright 2025 Dimitri Koshkin. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+name: devbox-dependencies-update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  devbox-update:
+    if: github.ref_type == 'branch'
+    runs-on: ubuntu-24.04
+    env:
+      DESTINATION_BRANCH: scheduled-devbox-update-${{ github.ref_name }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+        with:
+          # Use a PAT so PRs/commits trigger other workflows
+          token: ${{ secrets.DEPENDENCY_AUTOMATION_TOKEN }}
+
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.14.0
+        with:
+          enable-cache: true
+
+      - name: Run devbox update
+        run: devbox update
+
+      - name: Get number of versions changed
+        id: devbox-versions-changed
+        run: |
+          echo "number_changed=$(git diff --unified=0 devbox.lock | grep -c \"version\":)" >>"${GITHUB_OUTPUT}"
+
+      - name: Configure SSH signing
+        if: steps.devbox-versions-changed.outputs.number_changed > 0
+        env:
+          SSH_SIGNING_PRIVATE_KEY: ${{ secrets.GIT_SSH_SIGNING_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${SSH_SIGNING_PRIVATE_KEY}" > ~/.ssh/signing_key
+          chmod 600 ~/.ssh/signing_key
+          git config gpg.format ssh
+          git config user.signingkey "${HOME}/.ssh/signing_key"
+
+          git config user.name "${{ secrets.GIT_USER_NAME }}"
+          git config user.email "${{ secrets.GIT_USER_EMAIL }}"
+
+      - name: Commit changes
+        if: steps.devbox-versions-changed.outputs.number_changed > 0
+        id: commit-changes
+        env:
+          FILE_TO_COMMIT: devbox.lock
+        run: |
+          git push origin ":${DESTINATION_BRANCH}" || true
+          git add "${FILE_TO_COMMIT}"
+
+          TODAY="$( date -u '+%Y-%m-%d' )"
+          MESSAGE="build(${{ github.ref_name }}): Latest devbox update (${TODAY})"
+
+          git commit -S -m "${MESSAGE}"
+          git push -f origin "HEAD:${DESTINATION_BRANCH}"
+
+          echo "message=${MESSAGE}" >>"${GITHUB_OUTPUT}"
+
+      - name: Create PR
+        if: steps.devbox-versions-changed.outputs.number_changed > 0
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEPENDENCY_AUTOMATION_TOKEN }}
+        run: |
+          pr_url="$(gh pr create --base "${{ github.ref_name }}" --head "${DESTINATION_BRANCH}" \
+            --title "${{ steps.commit-changes.outputs.message }}" \
+            --body "This PR was automatically created by the scheduled devbox update workflow." \
+            --label ignore-for-release)"
+          gh pr merge --auto --squash "${pr_url}"

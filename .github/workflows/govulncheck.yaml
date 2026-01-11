@@ -1,0 +1,33 @@
+# Copyright 2025 Dimitri Koshkin. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+name: govulncheck
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+jobs:
+  govulncheck:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        module: [.]
+      fail-fast: false
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v6
+
+      - name: Install devbox
+        uses: jetify-com/devbox-install-action@v0.14.0
+        with:
+          enable-cache: true
+
+      - id: govulncheck
+        run: devbox run -- make govulncheck.${{ matrix.module }}
