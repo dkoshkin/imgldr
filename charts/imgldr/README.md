@@ -1,10 +1,10 @@
-# golang-repository-template
+# imgldr
 
 ![Version: v0.0.0-dev](https://img.shields.io/badge/Version-v0.0.0--dev-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v0.0.0-dev](https://img.shields.io/badge/AppVersion-v0.0.0--dev-informational?style=flat-square)
 
-A Helm chart for Golang Repository Template
+A Helm chart for Imgldr
 
-**Homepage:** <https://github.com/dkoshkin/golang-repository-template>
+**Homepage:** <https://github.com/dkoshkin/imgldr>
 
 ## Maintainers
 

@@ -1,5 +1,5 @@
-baseURL = "https://dkoshkin.github.io/golang-repository-template"
-title = "Golang Repository Template"
+baseURL = "https://dkoshkin.github.io/imgldr"
+title = "Imgldr"
 
 enableRobotsTXT = true
 
@@ -79,7 +79,7 @@ url_latest_version = "https://example.com"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
 # The links work despite our URL being GitLab not GitHub.
-github_repo = "https://github.com/dkoshkin/golang-repository-template"
+github_repo = "https://github.com/dkoshkin/imgldr"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
 # The links work despite our URL being GitLab not GitHub.
 
@@ -130,8 +130,8 @@ showLightDarkModeMenu = true
 [params.ui.feedback]
 enable = true
 # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-yes = 'Glad to hear it! Please <a href="https://github.com/dkoshkin/golang-repository-template/issues/new">tell us how we can improve</a>.'
-no = 'Sorry to hear that. Please <a href="https://github.com/dkoshkin/golang-repository-template/issues/new">tell us how we can improve</a>.'
+yes = 'Glad to hear it! Please <a href="https://github.com/dkoshkin/imgldr/issues/new">tell us how we can improve</a>.'
+no = 'Sorry to hear that. Please <a href="https://github.com/dkoshkin/imgldr/issues/new">tell us how we can improve</a>.'
 
 # Adds a reading time to the top of each doc.
 # If you want this feature, but occasionally need to remove the Reading time from a single page,
@@ -148,7 +148,7 @@ enable = false
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
 [[params.links.developer]]
   name = "GitHub"
-  url = "https://github.com/dkoshkin/golang-repository-template"
+  url = "https://github.com/dkoshkin/imgldr"
   icon = "fab fa-github"
   desc = "Development takes place here!"
 
@@ -156,7 +156,7 @@ enable = false
 name = "GitHub"
 weight = 50
 pre = "<i class='fab fa-github'></i>"
-url = "https://github.com/dkoshkin/golang-repository-template"
+url = "https://github.com/dkoshkin/imgldr"
 
 [params.taxonomy]
 

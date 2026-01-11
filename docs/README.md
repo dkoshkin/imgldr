@@ -3,7 +3,7 @@
  SPDX-License-Identifier: Apache-2.0
 -->
 
-# golang-repository-template documentation site
+# imgldr documentation site
 
 The docs site uses [hugo](https://gohugo.io/) to build a static site deployed to the `gh-pages` branch of this repo.
 
