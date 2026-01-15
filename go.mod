@@ -7,6 +7,8 @@ go 1.25.0
 
 toolchain go1.25.5
 
+replace github.com/dkoshkin/golang-repository-template/api => ./api
+
 require (
 	github.com/onsi/ginkgo/v2 v2.27.3
 	github.com/onsi/gomega v1.38.2
