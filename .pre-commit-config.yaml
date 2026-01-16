@@ -14,7 +14,7 @@ repos:
     name: schema-chart
     entry: make schema-chart
     language: system
-    files: "^charts/golang-repository-template/values.yaml$"
+    files: "^charts/imgldr/values.yaml$"
   - id: go-generate
     name: go-generate
     entry: make go-generate
@@ -78,7 +78,7 @@ repos:
     stages: [pre-commit]
   - id: end-of-file-fixer
     stages: [pre-commit]
-    exclude: ^charts/golang-repository-template/README.md$
+    exclude: ^charts/imgldr/README.md$
 - repo: https://github.com/rhysd/actionlint
   rev: v1.7.7
   hooks:
@@ -139,7 +139,7 @@ repos:
     name: License headers - Markdown
     stages: [pre-commit]
     files: \.md$
-    exclude: ^(charts/golang-repository-template/README.md|CHANGELOG.md$|docs/|.github/pull_request_template.md$)
+    exclude: ^(charts/imgldr/README.md|CHANGELOG.md$|docs/|.github/pull_request_template.md$)
     args:
       - --license-filepath
       - hack/license/license.txt

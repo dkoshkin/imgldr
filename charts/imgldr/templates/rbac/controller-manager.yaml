@@ -6,6 +6,6 @@ kind: ServiceAccount
 metadata:
     labels:
         app.kubernetes.io/managed-by: {{ .Release.Service }}
-        app.kubernetes.io/name: golang-repository-template
-    name: golang-repository-template-controller-manager
+        app.kubernetes.io/name: imgldr
+    name: imgldr-controller-manager
     namespace: {{ .Release.Namespace }}
